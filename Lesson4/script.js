@@ -1,6 +1,6 @@
-function setup(){
-    createCanvas(800,800);
-    background('grey');
+function setup() {
+  createCanvas(800, 800);
+  background('grey');
 
 }
 
@@ -8,7 +8,7 @@ let value = 0;
 function draw() {
   color("blue");
   fill(value);
- 
+
 }
 function mouseDragged() {
   value = value + 5;
