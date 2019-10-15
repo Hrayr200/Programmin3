@@ -1,25 +1,27 @@
-function main() {
-    var socket = io();
-    var chatDiv = document.getElementById('chat');
-    var input = document.getElementById('message');
-    var button = document.getElementById('submit');
+function setup(){
+    createCanvas(800,800);
+    background('grey');
 
-    function handleSubmit(evt) {
-        var val = input.value;
-        if (val != "") {
-            socket.emit("send message", val);
-        }
-    }
-    button.onclick = handleSubmit;
-
-    function handleMessage(msg) {
-        var p = document.createElement('p');
-        p.innerText = msg;
-        chatDiv.appendChild(p);
-        input.value = "";
-    }
-
-    socket.on('display message', handleMessage);
 }
 
-window.onload = main;  
+let value = 0;
+function draw() {
+  color("blue");
+  fill(value);
+ 
+}
+function mouseDragged() {
+  value = value + 5;
+  if (value > 255) {
+    value = 0;
+  }
+}
+
+function mouseDragged() {
+  ellipse(mouseX, mouseY, 20, 20);
+  // prevent default
+  return false;
+}
+
+
+
