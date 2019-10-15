@@ -6,8 +6,7 @@ function setup() {
 
 let value = 0;
 function draw() {
-  color("blue");
-  fill(value);
+  fill("blue");
 
 }
 function mouseDragged() {
