@@ -3,44 +3,40 @@ function setup() {
     var side = 30;
     var matrix = [];
     
-    //! Getting DOM objects (HTML elements)
+   
+
     let weatherElement = document.getElementById('weather');
     let grassCountElement = document.getElementById('grassCount');
     let grassLiveCountElement = document.getElementById('grassLiveCount');
     let grassEaterCountElement = document.getElementById('grassEaterCount');
-    let huntCountElement = document.getElementById('huntCount');
-    let terminatorCountElement = document.getElementById('termCount');
-    let titanCountElement = document.getElementById('titanCount');
-    //! adding socket listener on "data" <-- name, after that fire 'drawCreatures' function 
+    let predatorCountElement = document.getElementById('predatorCount');
+    let bombaCountElement = document.getElementById('bombaCount');
+    let amenakerCountElement = document.getElementById('amenakerCount');
+    let terminatorCountElement = document.getElementById('terminatorCount');
+    
+
     socket.on("data", drawCreatures);
     function drawCreatures(data) {
-        // let sendData = {
-        //     matrix: matrix,
-        //     grassCounter: grassHashiv,
-        //     grassLiveCounter: grassArr.length,
-        //     eatCounter: eatHashiv,
-        //     huntCounter: huntHashiv,
-        //     termCounter: termHashiv,
-        //     titanCounter: titanHashiv,
-        //     weather: weather
-        // }
+       
 
-        //! after getting data pass it to matrix variable
+
         matrix = data.matrix;
         weatherElement.innerText = data.weather;
         grassCountElement.innerText = data.grassCounter;
         grassLiveCountElement.innerText = data.grassLiveCounter;
-        grassEaterCountElement.innerText = data.eatCounter;
-        huntCountElement.innerText = data.huntCounter;
-        terminatorCountElement.innerText = data.termCounter;
-        titanCountElement.innerText = data.titanCounter;
-        //! Every time it creates new Canvas with new matrix size
-        createCanvas(matrix[0].length * side, matrix.length * side)
-        //! clearing background by setting it to new grey color
-        background('#acacac');
-        //! Draw grassCount and grassEaterCount to HTML (use DOM objects to update information, yes, and use .innerText <- function)
+        grassEaterCountElement.innerText = data.grassEaterCount;
+        predatorCountElement.innerText = data.predatorCount;
+        bombaCountElement.innerText = data.bombaCount;
+        amenakerCountElement.innerText = data.amenakerCount;
+        terminatorCountElement.innerText = data.terminatorCount;
+       
 
-        //! Drawing and coloring RECTs
+        
+        createCanvas(matrix[0].length * side, matrix.length * side)
+        background('#acacac');
+ 
+
+
         for (var y = 0; y < matrix.length; y++) {
             for (var x = 0; x < matrix[y].length; x++) {
                 if (matrix[y][x] == 1) {
@@ -69,6 +65,10 @@ function setup() {
         
                 else if (matrix[y][x] == 5) {
                     fill("blue");
+                }
+
+                else if (matrix[y][x] == 6) {
+                    fill("pink");
                 }
                 rect(x * side, y * side, side, side);
             }

@@ -3,10 +3,10 @@ var random = require("./random.js");
 
 
 
-module.exports = class Hunter extends LiveForm{
+module.exports = class Predator extends LiveForm{
     constructor(x, y) {
         super(x, y);
-        this.life = 32;
+        this.energy = 32;
     }
     getNewcordinates() {
         this.directions = [
