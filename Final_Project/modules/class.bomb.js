@@ -9,7 +9,7 @@ module.exports = class Bomba extends LiveForm {
         super(x, y);
         this.life = 10;
     }
-    getNewcordinates() {
+    getNewCordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
@@ -31,7 +31,7 @@ module.exports = class Bomba extends LiveForm {
 
     }
     chooseCell(character) {
-        this.getNewCoordinates();
+        this.getNewCordinates();
         return super.chooseCell(character);
     } 
     mul() {

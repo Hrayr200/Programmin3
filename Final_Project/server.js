@@ -3,25 +3,28 @@ var GrassEater = require("./modules/class.eatgrass.js");
 var Predator = require("./modules/class.predator.js");
 var Amenaker = require("./modules/class.bigeater.js");
 var Bomba = require("./modules/class.bomb.js");
-var Terminator = require('./modules/class.terminator.js');
+// var Terminator = require('./modules/class.terminator.js');
+let random = require('./modules/random');
 
 grassArr = [];
 grassEaterArr = [];
 predatorArr = [];
 bombaArr = [];
 amenakerArr = [];
-terminatorArr = [];
+// terminatorArr = [];
+matrix = [];
 
 grassHashiv = 0;
 grassEatHashiv = 0;
 predatorHashiv = 0;
 bombaHashiv = 0;
 amenakerHashiv = 0;
-terminatorHashiv = 0;
+// terminatorHashiv = 0;
 
 
 function matrixGenerator(matrixSize, grass, grassEater, gishatich,bomb,amenaker,terminator) {
     for (let i = 0; i < matrixSize; i++) {
+        
         matrix[i] = [];
         for (let o = 0; o < matrixSize; o++) {
             matrix[i][o] = 0;
@@ -37,11 +40,12 @@ function matrixGenerator(matrixSize, grass, grassEater, gishatich,bomb,amenaker,
         let customY = Math.floor(random(0, matrixSize));
         matrix[customY][customX] = 2;
     }
-
+    
     for (let i = 0; i < gishatich; i++) {
         let customX = Math.floor(random(0, matrixSize));
         let customY = Math.floor(random(0, matrixSize));
         matrix[customY][customX] = 3;
+        
     }
     for (let i = 0; i < bomb; i++) {
         let customX = Math.floor(random(0, matrixSize));
@@ -55,15 +59,15 @@ function matrixGenerator(matrixSize, grass, grassEater, gishatich,bomb,amenaker,
         matrix[customY][customX] = 5;
     } 
 
-    for (let i = 0; i < terminator; i++) {
-        let customX = Math.floor(random(0, matrixSize));
-        let customY = Math.floor(random(0, matrixSize));
-        matrix[customY][customX] = 6;
-    }
+    // for (let i = 0; i < terminator; i++) {
+    //     let customX = Math.floor(random(0, matrixSize));
+    //     let customY = Math.floor(random(0, matrixSize));
+    //     matrix[customY][customX] = 6;
+    // }
     
 }
 
-matrixGenerator(30, 250, 60, 40, 30,20,1);
+ matrixGenerator(30, 250, 60, 40, 30,20,1);                   
 
 
 var express = require('express');
@@ -76,7 +80,6 @@ app.get('/', function (req, res) {
 });
 server.listen(3000);
 
-
 function creatingObjects() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
@@ -84,6 +87,7 @@ function creatingObjects() {
                 let grass = new Grass(x, y);
                 grassArr.push(grass);
                 grassHashiv++;
+               
             }
             if (matrix[y][x] == 2) {
                 let grassEater = new GrassEater(x, y);
@@ -91,9 +95,11 @@ function creatingObjects() {
                 grassEatHashiv++;
             }
             if (matrix[y][x] == 3) {
+                console.log("Ashxatum a");
                 let gishatich = new Predator(x, y);
                 predatorArr.push(gishatich);
                 predatorHashiv++;
+                 
             }
 
             if (matrix[y][x] == 4) {
@@ -105,14 +111,15 @@ function creatingObjects() {
                 let amenaker = new Amenaker(x, y);
                 amenakerArr.push(amenaker);
                 amenakerHashiv++;
+                
             }
 
-            if (matrix[y][x] == 6) {
-                let terminator = new Terminator(x, y);
-                terminatorArr.push(terminator);
-                terminatorHashiv++;
-            }
-            
+            // if (matrix[y][x] == 6) {
+            //     let terminator = new Terminator(x, y);
+            //     terminatorArr.push(terminator);
+            //     terminatorHashiv++;
+            // }
+           
         }
     }
 }
@@ -165,11 +172,11 @@ function game() {
             amenakerArr[i].eat();
         }
     }
-    if (terminatorArr[0] !== undefined) {
-        for (var i in terminatorArr) {
-            terminatorArr[i].term();
-        }
-    }
+    // if (terminatorArr[0] !== undefined) {
+    //     for (var i in terminatorArr) {
+    //         terminatorArr[i].term();
+    //     }
+    // }
 
     
     let sendData = {
@@ -180,7 +187,7 @@ function game() {
         predatorCount: predatorHashiv,
         bombaCount: bombaHashiv,
         amenakerCount: amenakerHashiv,
-        terminatorCount: terminatorHashiv,
+        // terminatorCount: terminatorHashiv,
         weather: weather
     }
 
@@ -190,5 +197,7 @@ function game() {
 
 
 setInterval(game, 1000) 
+
+
 
 

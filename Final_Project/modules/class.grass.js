@@ -7,7 +7,7 @@ module.exports = class Grass extends LiveForm {
         super(x, y);
         this.multiply = 0;
     }
-    getNewcordinates() {
+    getNewCoordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
@@ -31,7 +31,7 @@ module.exports = class Grass extends LiveForm {
         let newCell = random(emptyCells);
 
         if (newCell && this.multiply > 1) {
-
+            grassHashiv++;
             let x = newCell[0];
             let y = newCell[1];
 

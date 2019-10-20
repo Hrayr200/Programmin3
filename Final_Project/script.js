@@ -12,7 +12,7 @@ function setup() {
     let predatorCountElement = document.getElementById('predatorCount');
     let bombaCountElement = document.getElementById('bombaCount');
     let amenakerCountElement = document.getElementById('amenakerCount');
-    let terminatorCountElement = document.getElementById('terminatorCount');
+    // let terminatorCountElement = document.getElementById('terminatorCount');
     
 
     socket.on("data", drawCreatures);
@@ -28,7 +28,7 @@ function setup() {
         predatorCountElement.innerText = data.predatorCount;
         bombaCountElement.innerText = data.bombaCount;
         amenakerCountElement.innerText = data.amenakerCount;
-        terminatorCountElement.innerText = data.terminatorCount;
+        // terminatorCountElement.innerText = data.terminatorCount;
        
 
         
@@ -58,6 +58,7 @@ function setup() {
                 }
                 else if (matrix[y][x] == 3) {
                     fill("red");
+                    console.log("Ashxatum a"); 
                 }
                 else if (matrix[y][x] == 4) {
                     fill("black");
@@ -67,15 +68,16 @@ function setup() {
                     fill("blue");
                 }
 
-                else if (matrix[y][x] == 6) {
-                    fill("pink");
-                }
+                // else if (matrix[y][x] == 6) {
+                //     fill("pink");
+                // }
                 rect(x * side, y * side, side, side);
             }
         }
         
     }
 }
+
 
 
 
