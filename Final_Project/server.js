@@ -28,7 +28,7 @@ function matrixGenerator(matrixSize, grass, grassEater, gishatich,bomb,amenaker,
         }
     }
     for (let i = 0; i < grass; i++) {
-        let customX = Math.floor(random(0, matrixSize)); // 0 - 49
+        let customX = Math.floor(random(0, matrixSize)); 
         let customY = Math.floor(random(0, matrixSize));
         matrix[customY][customX] = 1;
     }
