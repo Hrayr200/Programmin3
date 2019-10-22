@@ -3,7 +3,7 @@ var GrassEater = require("./modules/class.eatgrass.js");
 var Predator = require("./modules/class.predator.js");
 var Amenaker = require("./modules/class.bigeater.js");
 var Bomba = require("./modules/class.bomb.js");
-// var Terminator = require('./modules/class.terminator.js');
+var Terminator = require('./modules/class.terminator.js');
 let random = require('./modules/random');
 
 grassArr = [];
@@ -11,7 +11,7 @@ grassEaterArr = [];
 predatorArr = [];
 bombaArr = [];
 amenakerArr = [];
-// terminatorArr = [];
+terminatorArr = [];
 matrix = [];
 
 grassHashiv = 0;
@@ -19,7 +19,7 @@ grassEatHashiv = 0;
 predatorHashiv = 0;
 bombaHashiv = 0;
 amenakerHashiv = 0;
-// terminatorHashiv = 0;
+terminatorHashiv = 0;
 
 
 function matrixGenerator(matrixSize, grass, grassEater, gishatich,bomb,amenaker,terminator) {
@@ -39,6 +39,7 @@ function matrixGenerator(matrixSize, grass, grassEater, gishatich,bomb,amenaker,
         let customX = Math.floor(random(0, matrixSize));
         let customY = Math.floor(random(0, matrixSize));
         matrix[customY][customX] = 2;
+        
     }
     
     for (let i = 0; i < gishatich; i++) {
@@ -59,15 +60,15 @@ function matrixGenerator(matrixSize, grass, grassEater, gishatich,bomb,amenaker,
         matrix[customY][customX] = 5;
     } 
 
-    // for (let i = 0; i < terminator; i++) {
-    //     let customX = Math.floor(random(0, matrixSize));
-    //     let customY = Math.floor(random(0, matrixSize));
-    //     matrix[customY][customX] = 6;
-    // }
+    for (let i = 0; i < terminator; i++) {
+        let customX = Math.floor(random(0, matrixSize));
+        let customY = Math.floor(random(0, matrixSize));
+        matrix[customY][customX] = 6;
+    }
     
 }
 
- matrixGenerator(30, 250, 60, 40, 30,20,1);                   
+ matrixGenerator(30, 250, 60, 40, 30,20,5);                   
 
 
 var express = require('express');
@@ -88,37 +89,38 @@ function creatingObjects() {
                 grassArr.push(grass);
                 grassHashiv++;
                
+               
             }
-            if (matrix[y][x] == 2) {
+            else if (matrix[y][x] == 2) {
                 let grassEater = new GrassEater(x, y);
                 grassEaterArr.push(grassEater);
                 grassEatHashiv++;
             }
-            if (matrix[y][x] == 3) {
-                console.log("Ashxatum a");
+            else if (matrix[y][x] == 3) {
                 let gishatich = new Predator(x, y);
                 predatorArr.push(gishatich);
                 predatorHashiv++;
                  
             }
 
-            if (matrix[y][x] == 4) {
+            else if (matrix[y][x] == 4) {
                 let bomb = new Bomba(x, y);
                 bombaArr.push(bomb);
                 bombaHashiv++;
             }
-            if (matrix[y][x] == 5) {
+            else if (matrix[y][x] == 5) {
                 let amenaker = new Amenaker(x, y);
                 amenakerArr.push(amenaker);
                 amenakerHashiv++;
                 
             }
 
-            // if (matrix[y][x] == 6) {
-            //     let terminator = new Terminator(x, y);
-            //     terminatorArr.push(terminator);
-            //     terminatorHashiv++;
-            // }
+            else if (matrix[y][x] == 6) {
+                let terminator = new Terminator(x, y);
+                terminatorArr.push(terminator);
+                terminatorHashiv++;
+                
+            }
            
         }
     }
@@ -172,22 +174,22 @@ function game() {
             amenakerArr[i].eat();
         }
     }
-    // if (terminatorArr[0] !== undefined) {
-    //     for (var i in terminatorArr) {
-    //         terminatorArr[i].term();
-    //     }
-    // }
+    if (terminatorArr[0] !== undefined) {
+        for (var i in terminatorArr) {
+            terminatorArr[i].move();
+        }
+    }
 
     
     let sendData = {
         matrix: matrix,
         grassCounter: grassHashiv,
         grassLiveCounter: grassArr.length,
-        grassEaterCount: grassEatHashiv,
-        predatorCount: predatorHashiv,
-        bombaCount: bombaHashiv,
-        amenakerCount: amenakerHashiv,
-        // terminatorCount: terminatorHashiv,
+        grassEaterCounter: grassEatHashiv,
+        predatorCounter: predatorHashiv,
+        bombaCounter: bombaHashiv,
+        amenakerCounter: amenakerHashiv,
+        terminatorCounter: terminatorHashiv,
         weather: weather
     }
 

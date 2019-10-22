@@ -12,7 +12,7 @@ function setup() {
     let predatorCountElement = document.getElementById('predatorCount');
     let bombaCountElement = document.getElementById('bombaCount');
     let amenakerCountElement = document.getElementById('amenakerCount');
-    // let terminatorCountElement = document.getElementById('terminatorCount');
+  let terminatorCountElement = document.getElementById('terminatorCount');
     
 
     socket.on("data", drawCreatures);
@@ -24,11 +24,11 @@ function setup() {
         weatherElement.innerText = data.weather;
         grassCountElement.innerText = data.grassCounter;
         grassLiveCountElement.innerText = data.grassLiveCounter;
-        grassEaterCountElement.innerText = data.grassEaterCount;
-        predatorCountElement.innerText = data.predatorCount;
-        bombaCountElement.innerText = data.bombaCount;
-        amenakerCountElement.innerText = data.amenakerCount;
-        // terminatorCountElement.innerText = data.terminatorCount;
+        grassEaterCountElement.innerText = data.grassEaterCounter;
+        predatorCountElement.innerText = data.predatorCounter;
+        bombaCountElement.innerText = data.bombaCounter;
+        amenakerCountElement.innerText = data.amenakerCounter;
+         terminatorCountElement.innerText = data.terminatorCount;
        
 
         
@@ -58,7 +58,7 @@ function setup() {
                 }
                 else if (matrix[y][x] == 3) {
                     fill("red");
-                    console.log("Ashxatum a"); 
+                  
                 }
                 else if (matrix[y][x] == 4) {
                     fill("black");
@@ -68,9 +68,10 @@ function setup() {
                     fill("blue");
                 }
 
-                // else if (matrix[y][x] == 6) {
-                //     fill("pink");
-                // }
+                else if (matrix[y][x] == 6) {
+                    fill("pink");
+                  
+                }
                 rect(x * side, y * side, side, side);
             }
         }

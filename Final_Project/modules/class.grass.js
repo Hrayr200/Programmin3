@@ -37,8 +37,8 @@ module.exports = class Grass extends LiveForm {
 
             matrix[y][x] = 1;
 
-            let grass = new Grass(x, y);
-            grassArr.push(grass);
+            let xot = new Grass(x, y);
+            grassArr.push(xot);
 
             this.multiply = 0;
         }

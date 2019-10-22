@@ -8,7 +8,7 @@ module.exports = class Predator extends LiveForm{
         super(x, y);
         this.energy = 32;
     }
-    getNewcordinates() {
+    getNewCoordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
